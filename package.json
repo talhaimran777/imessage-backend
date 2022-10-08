@@ -1,0 +1,18 @@
+{
+  "name": "backend-for-imessage",
+  "version": "1.0.0",
+  "description": "Building a custom backend for imessage frontend",
+  "main": "src/index.js",
+  "author": "Talha Imran",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
