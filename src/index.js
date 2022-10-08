@@ -1,12 +1,35 @@
 const express = require("express");
+const users = require("../data/users");
+
+const { ApolloServer, gql } = require("apollo-server-express");
+
+const typeDefs = gql`
+  type User {
+    name: String
+    age: Int
+  }
+
+  type Query {
+    users: [User]
+  }
+`;
+
+const resolvers = {
+  Query: {
+    users: () => users,
+  },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
 
 const PORT = 5000;
 
-app.get("/", (req, res) => {
-  res.json({ message: "Building backend for imessage clone!" });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server started listening on port => ${PORT}`);
+server.start().then(() => {
+  server.applyMiddleware({ app });
+  app.listen({ port: PORT }, () =>
+    console.log(
+      `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+    )
+  );
 });
