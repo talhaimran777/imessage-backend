@@ -1,4 +1,4 @@
-const { server, app, httpServer } = require("./server");
+import { httpServer, server, app } from "./server";
 
 const PORT = 5000;
 
